@@ -1,0 +1,57 @@
+/* Grundinställningar för hela baren */
+* {
+    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.5); /* Semitransparent mörkblå */
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 10px;
+}
+
+/* Varje modul (klocka, nätverk etc) */
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    background-color: #7aa2f7;
+    border-bottom: 3px solid #ffffff;
+    border-radius: 5px;
+}
+
+#clock,
+#network,
+#battery,
+#window {
+    padding: 0 10px;
+    margin: 4px 4px;
+    background-color: #24283b;
+    border-radius: 8px;
+}
+
+#clock {
+    color: #c0caf5;
+    background-color: #414868;
+}
+
+#battery.charging {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #ffbe61;
+    color: black;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}#waybar config

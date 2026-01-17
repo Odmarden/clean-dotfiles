@@ -1,1 +1,4 @@
-#waybar config
+{
+    "style": "/home/daniel/.config/waybar/style.css",
+    "layer": "top",
+    ...
