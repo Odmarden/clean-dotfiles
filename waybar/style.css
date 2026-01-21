@@ -1,57 +1,137 @@
-/* Grundinställningar för hela baren */
+/* Tokyo Night Colors */
+@define-color bg #1a1b26;
+@define-color fg #c0caf5;
+@define-color cyan #7dcfff;
+@define-color purple #bb9af7;
+@define-color magenta #bb9af7;
+@define-color orange #ff9e64;
+@define-color yellow #e0af68;
+@define-color red #f7768e;
+@define-color green #9ece6a;
+
 * {
-    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono";
     font-size: 13px;
+    border: none;
+    border-radius: 0;
 }
 
 window#waybar {
-    background-color: rgba(26, 27, 38, 0.5); /* Semitransparent mörkblå */
-    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    /* Using 0.8 transparency */
+    background: linear-gradient(45deg, rgba(26, 27, 38, 0.8), rgba(36, 40, 59, 0.8));
+    color: @fg;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 10px;
+    background: linear-gradient(45deg, rgba(26, 27, 38, 0.9), rgba(36, 40, 59, 0.9));
+    color: @fg;
+    /* Ensure no extra padding is forcing the bar to be taller than 30px */
+    padding: 0;
 }
 
-/* Varje modul (klocka, nätverk etc) */
-#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-    border-bottom: 3px solid transparent;
-}
-
-#workspaces button.active {
-    background-color: #7aa2f7;
-    border-bottom: 3px solid #ffffff;
-    border-radius: 5px;
-}
-
-#clock,
+#cpu,
+#idle-inhibitor,
+#memory,
 #network,
+#pulseaudio,
 #battery,
-#window {
-    padding: 0 10px;
-    margin: 4px 4px;
-    background-color: #24283b;
+#tray,
+#clock,
+#custom-power
+#workspaces {
+    
+    background-color: rgba(36, 40, 59, 0.9); /* Slightly more solid than the bar */
+    padding: 2px 10px;
+    margin: 4px 2px;
     border-radius: 8px;
+    border: 1px solid rgba(187, 154, 247, 0.2); /* Subtle purple border */
+}
+
+#cpu {
+    color: @orange;
+}
+
+#memory {
+    color: @green;
+}
+
+#network {
+    color: @cyan;
+}
+
+#pulseaudio {
+    color: @purple;
+}
+
+#battery {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #clock {
-    color: #c0caf5;
-    background-color: #414868;
+    color: @cyan;
+    font-weight: bold;
 }
 
-#battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+#workspaces button:hover {
+    /* Remove the default white background */
+    background-color: rgba(187, 154, 247, 0.2); 
+    
+    /* Apply rounded corners to the hover state */
+    border-radius: 8px;
+    
+    /* Remove the default box shadow/outline if it appears */
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
 }
 
-#battery.warning:not(.charging) {
-    background-color: #ffbe61;
-    color: black;
+ 
+#workspaces button {
+    padding: 0 5px;
+    margin: 0 2px;
+    background-color: transparent;
+    color: @fg;
 }
 
-#network.disconnected {
-    background-color: #f53c3c;
-}#waybar config
+
+
+#workspaces button.active {
+    color: #1a1b26;          /* Dark text for contrast */
+    background-color: @purple; /* Tokyo Night Purple highlight */
+    border-radius: 8px;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+}
+
+#workspaces button:hover {
+    background-color: rgba(187, 154, 247, 0.2);
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#idle_inhibitor {
+    color: #bb9af7; /* Magenta/Purple */
+}
+
+#idle_inhibitor.activated {
+    color: #f7768e; /* Bright Red/Pink when active */
+    min-width: 20px;
+}
+
+#custom-power {
+    background-color: #f7768e; /* Tokyo Night Red */
+    color: #1a1b26;            /* Dark text for contrast */
+    padding: 0 12px;
+    margin: 4px 2px;
+    border-radius: 8px;
+}
